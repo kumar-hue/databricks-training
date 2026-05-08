@@ -1,14 +1,5 @@
-1. Select all columns from Employee table
+1. Select all columns from Employee tabl
 
-SELECT * FROM Employee;
+2. Select name and salary columns
 
--- 2. Select name and salary columns
-
-SELECT name, salary
-FROM Employee;
-
--- 3. Select employees older than 30
-
-SELECT *
-FROM Employee
-WHERE age > 30;
+3. Select employees older than 30
