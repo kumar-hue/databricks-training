@@ -4,6 +4,8 @@
 - SELECT
 - WHERE
 - Basic SQL Queries
+- GROUP BY
+- AGGREGRATE FUNCTIONS
 
 ## Platform Used
 - DB-Fiddle
