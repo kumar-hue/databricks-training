@@ -1,37 +1,66 @@
--- Create Department table
-CREATE TABLE Department (
-    department_id INT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
+--SQL Practice Queries
+Schema
+Employee Table
+emp_id	name	age	salary	department_id	hire_date
+1	John Doe	28	50000	1	2020-01-15
+2	Jane Smith	34	60000	2	2019-07-23
+3	Bob Brown	45	45000	1	2018-02-12
+4	Alice Blue	25	55000	3	2021-03-22
+5	Charlie P	29	50000	2	2019-12-01
+
+Department Table
+department_id	name
+1	IT
+2	HR
+3	Finance
+4	Marketing
+
+Project Table
+project_id	name	department_id
+1	Project Alpha	1
+2	Project Beta	2
+3	Project Gamma	1
+4	Project Delta	3
+5	Project Epsilon	4
+
+
+
+
+--creation of department table
+CREATE TABLE Department(
+  department_id INT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL
 );
 
--- Create Employee table
-CREATE TABLE Employee (
-    emp_id INT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    age INT,
-    salary DECIMAL(10, 2),
-    department_id INT,
-    hire_date DATE,
-    FOREIGN KEY (department_id) REFERENCES Department(department_id)
+
+--creation of employee table
+CREATE TABLE Employee(
+  emp_id INT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  age INT,
+  salary DECIMAL(10,2),
+  department_id INT,
+  hire_date DATE,
+  FOREIGN KEY(department_id) REFERENCES Department(department_id)
 );
 
--- Create Project table
-CREATE TABLE Project (
-    project_id INT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    department_id INT,
-    FOREIGN KEY (department_id) REFERENCES Department(department_id)
+--creation of project table
+ CREATE TABLE Project(
+   project_id INT PRIMARY KEY,
+   name VARCHAR(100) NOT NULL,
+   department_id INT,
+   FOREIGN KEY(department_id) REFERENCES Department(department_id)
 );
 
--- Insert data into Department table
-INSERT INTO Department (department_id, name) VALUES
-(1, 'IT'),
-(2, 'HR'),
-(3, 'Finance'),
-(4, 'Marketing');
+--inserting data into department table
+INSERT INTO Department(department_id,name) VALUES
+(1,'IT'),
+(2,'HR'),
+(3,'Finance'),
+(4,'Marketing');
 
--- Insert data into Employee table
-INSERT INTO Employee (emp_id, name, age, salary, department_id, hire_date) VALUES
+--inserting data into employee table
+INSERT INTO Employee(emp_id,name,age,salary,department_id,hire_date) VALUES
 (1, 'John Doe', 28, 50000.00, 1, '2020-01-15'),
 (2, 'Jane Smith', 34, 60000.00, 2, '2019-07-23'),
 (3, 'Bob Brown', 45, 80000.00, 1, '2018-02-12'),
@@ -40,7 +69,7 @@ INSERT INTO Employee (emp_id, name, age, salary, department_id, hire_date) VALUE
 (6, 'David Green', 38, 70000.00, 4, '2022-05-18'),
 (7, 'Eve Black', 40, 55000.00, 3, '2021-08-30');
 
--- Insert data into Project table
+--inserting data into project table
 INSERT INTO Project (project_id, name, department_id) VALUES
 (1, 'Project Alpha', 1),
 (2, 'Project Beta', 2),
@@ -48,36 +77,134 @@ INSERT INTO Project (project_id, name, department_id) VALUES
 (4, 'Project Delta', 3),
 (5, 'Project Epsilon', 4),
 (6, 'Project Zeta', 4),
-(7, 'Project Eta', 3);
+(7, 'Project Eta', 3); 
 
 
--- Insert additional data into Department table (if needed)
--- No additional departments needed for this data set
+--Questions
+--Basic Queries (5)
+Select all columns from the Employee table.
+Select only the name and salary columns from the Employee table.
+Select employees who are older than 30.
+Select the names of all departments.
+Select employees who work in the IT department.
 
--- Insert additional data into Employee table to test edge cases for joins and nested queries
-INSERT INTO Employee (emp_id, name, age, salary, department_id, hire_date) VALUES
-(8, 'Frank White', 32, 48000.00, NULL, '2021-07-10'),  -- Employee without a department
-(9, 'Grace Kelly', 27, 65000.00, 1, '2018-11-13'),
-(10, 'Hannah Lee', 30, 53000.00, 4, '2020-02-25');
+--String Matching Queries (5)
 
--- Insert additional data into Project table to test edge cases for joins
-INSERT INTO Project (project_id, name, department_id) VALUES
-(8, 'Project Theta', 1),
-(9, 'Project Iota', NULL);  -- Project without a department
+Select employees whose names start with 'J'.
+Select employees whose names end with 't'.
+Select employees whose name contains 'o'.
+Select employees whose names are exactly 4 characters long.
+Select employees whose names have 'a' as the second character.
 
+--Date Queries (5)
 
-1. Select all columns from Employee table
+Select employees hired in the year 2020.
+Select employees hired in January of any year.
+Select employees hired before 2019.
+Select employees hired on or after March 1, 2021.
+Select employees hired in the last 2 years.
 
-2. Select name and salary columns
+--Aggregate Queries (5)
 
-3. Select employees older than 30
+Select the total salary of all employees.
+Select the average salary of employees.
+Select the maximum salary in the Employee table.
+Select the number of employees in each department.
+Select the average salary of employees in each department.
 
-4. select employees whose names start with 'j'.
+--Group By Queries (5)
 
-5.select employees whose names exactly 9 characters long.
+Select the total salary for each department.
+Select the average age of employees in each department.
+Select the number of employees hired in each year.
+Select the highest salary in each department.
+Ask the department with the highest average salary.
 
-6.select employees hired in the year 2020.
+--Answers
+-- 1
+SELECT*FROM Employee;
 
-7.select emoployees hired in last 2 years.
+-- 2
+SELECT name,salary FROM Employee;
 
-8.select the aveerage salary of employees.  
+-- 3
+SELECT*FROM Employee WHERE age>30;
+
+-- 4
+SELECT name FROM Employee;
+
+-- 5
+SELECT*FROM Employee WHERE department_id=2;
+
+-- 6
+SELECT*FROM Employee WHERE name LIKE 'J%';
+
+-- 7
+SELECT*FROM Employee WHERE name LIKE '%e';
+
+-- 8
+SELECT*FROM Employee WHERE name LIKE '%a%';
+
+-- 9
+SELECT*FROM Employee WHERE name LIKE '_____';
+
+-- 10
+SELECT*FROM Employee WHERE name LIKE '_a%';
+
+-- 11
+SELECT*FROM Employee WHERE YEAR(hire_date)=2020;
+
+-- 12
+SELECT*FROM Employee 
+WHERE hire_date>=CURDATE()-INTERVAL 1 YEAR;
+
+-- 13
+SELECT * FROM Employee WHERE hire_date < '2019-01-01';
+
+-- 14
+SELECT * FROM Employee 
+WHERE hire_date BETWEEN '2021-01-01' AND '2021-12-31';
+
+-- 15
+SELECT * FROM Employee 
+WHERE hire_date >= CURDATE()-INTERVAL 2 YEAR;
+
+-- 16
+SELECT SUM(salary) FROM Employee;
+
+-- 17
+SELECT AVG(salary) FROM Employee;
+
+-- 18
+SELECT MAX(salary) FROM Employee;
+
+-- 19
+SELECT department_id, COUNT(*) 
+FROM Employee GROUP BY department_id;
+
+-- 20
+SELECT department_id,AVG(salary) 
+FROM Employee GROUP BY department_id;
+
+-- 21
+SELECT department_id,SUM(salary) 
+FROM Employee GROUP BY department_id;
+
+-- 22
+SELECT department_id,AVG(salary) 
+FROM Employee GROUP BY department_id;
+
+-- 23
+SELECT department_id, COUNT(*) 
+FROM Employee GROUP BY department_id;
+
+-- 24
+SELECT department_id, MAX(salary) 
+FROM Employee GROUP BY department_id;
+
+-- 25
+SELECT department_id 
+FROM Employee 
+GROUP BY department_id 
+ORDER BY AVG(salary) DESC 
+LIMIT 1;
