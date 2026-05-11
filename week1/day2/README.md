@@ -7,6 +7,8 @@
 - SUM
 - GROUP BY
 - HAVING
+- JOINS
+- SUBQUERIES
 
 ## Platform Used
 - DB-Fiddle
